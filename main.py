@@ -8,7 +8,7 @@ import numpy as np
 response = rq.get('https://www.time.ir/')
 resp = response.text
 
-soap = BeautifulSoup(resp, 'html.parser')
+soup = BeautifulSoup(resp, 'html.parser')
 
 date_foramt = 1
 dates = ['jalali', 'miladi small', 'qamari small']
@@ -18,13 +18,13 @@ while True:
     inp = inp.strip()
 
     if inp == 'date':
-        div = soap.find_all('span', class_ = 'show date')
+        div = soup.find_all('span', class_ = 'show date')
         date= div[date_foramt - 1].text
         print(date)
         continue
     
     elif inp == 'date numeric':
-        div = soap.find_all('span', class_ = 'show numeral')
+        div = soup.find_all('span', class_ = 'show numeral')
         date= div[date_foramt - 1].text
         print(date)
         continue
